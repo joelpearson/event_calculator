@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Closing Worksheet</title>
+    <title>Event Closing Worksheet (under development)</title>
     <style>
         :root {
             color-scheme: light dark;
         }
         body {
             font-family: monospace;
-            max-width: 600px;
+            max-width: 400px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
@@ -36,7 +36,7 @@
             align-items: center;
         }
         .col-label {
-            text-align: left;
+            text-align: right;
         }
         .col-input {
             text-align: right;
@@ -58,16 +58,6 @@
             font-weight: bold;
             padding-top: 10px;
             border-top: 1px solid #ccc;
-        }
-        .highlight {
-            background-color: #ffffcc;
-            padding: 2px 5px;
-        }
-        .negative {
-            color: red;
-        }
-        .positive {
-            color: green;
         }
         @media (max-width: 480px) {
             body {
@@ -95,10 +85,6 @@
                 color: #e0e0e0;
                 border: 1px solid #444;
             }
-            .highlight {
-                background-color: #4a4a00;
-                color: #ffff99;
-            }
             h2 {
                 border-bottom-color: #444;
             }
@@ -109,7 +95,7 @@
     </style>
 </head>
 <body>
-    <h1>Event Closing Worksheet</h1>
+    <h1>Event Closing Worksheet (under development)</h1>
 
     <div class="grid">
         <h2>Cash Count</h2>
@@ -140,7 +126,7 @@
 
         <div class="total-row-wrapper">
             <div class="col-label">Total Cash:</div>
-            <div class="col-result"><span class="highlight">$<span id="totalCash">0.00</span></span></div>
+            <div class="col-result">$<span id="totalCash">0.00</span></div>
         </div>
 
         <div class="col-label">Electronic Payments:</div>
@@ -149,7 +135,7 @@
 
         <div class="total-row-wrapper">
             <div class="col-label">Income (Cash + Electronic):</div>
-            <div class="col-result"><span class="highlight">$<span id="income">0.00</span></span></div>
+            <div class="col-result">$<span id="income">0.00</span></div>
         </div>
 
         <h2>Artist Contract Rates</h2>
@@ -193,17 +179,17 @@
 
         <div class="total-row-wrapper">
             <div class="col-label">Expenses (Artists + Rent):</div>
-            <div class="col-result"><span class="highlight">$<span id="expenses">250.00</span></span></div>
+            <div class="col-result">$<span id="expenses">250.00</span></div>
         </div>
 
         <div class="total-row-wrapper">
             <div class="col-label">Net Income (Income - Expenses):</div>
-            <div class="col-result"><span class="highlight">$<span id="netIncome">-250.00</span></span></div>
+            <div class="col-result">$<span id="netIncome">-250.00</span></div>
         </div>
 
         <div class="total-row-wrapper">
             <div class="col-label">Bonus (10% if positive, rounded up to nearest $5):</div>
-            <div class="col-result"><span class="highlight">$<span id="bonus">0.00</span></span></div>
+            <div class="col-result">$<span id="bonus">0.00</span></div>
         </div>
     </div>
 
@@ -260,9 +246,7 @@
 
             // Net income
             var netIncome = income - expenses;
-            var netIncomeEl = document.getElementById('netIncome');
-            netIncomeEl.textContent = formatMoney(netIncome);
-            netIncomeEl.className = netIncome >= 0 ? 'positive' : 'negative';
+            document.getElementById('netIncome').textContent = formatMoney(netIncome);
 
             // Bonus (10% rounded up to nearest $5)
             var bonus = netIncome > 0 ? Math.ceil(netIncome * 0.10 / 5) * 5 : 0;
@@ -273,6 +257,9 @@
         var inputs = document.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++) {
             inputs[i].addEventListener('input', calculate);
+            inputs[i].addEventListener('focus', function() {
+                this.select();
+            });
         }
 
         // Initial calculation
