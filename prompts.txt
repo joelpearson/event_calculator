@@ -27,3 +27,10 @@ remove the "Summary" line.
 
 Prompt 6:
 make the layout responsive so that the app can be used on a phone.
+
+Prompt 7:
+Remove all coloring and highlighting from calculated fields.
+When a user clicks or taps into an input field, the contents of that field should be selected.
+Add "(under development)" after "Event Closing Worksheet" in both the title and the header.
+body max-width should be 400px.
+col-label class should be text-align: right.
