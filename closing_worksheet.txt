@@ -1,0 +1,31 @@
+Worksheet for calculating income, expenses, and bonus:
+
+Cash number of each denomination of bills
+$100 x ______ = ________
+$50 x _______ = ________
+$20 x _______ = ________
+$10 x _______ = ________
+$ 5 x ________ = ________
+$ 1 x ________ = ________
+
+TotalCash: _________
+ElectronicPayments: _________
+Income (TotalCash + ElectronicPayments): ___________
+
+Artist contract rates
+Caller: _____________
+Sound: _____________
+Band member 1: _____________
+Band member 2: _____________
+Band member 3: _____________
+Band member 4: _____________
+Band member 5: _____________
+
+TotalArtists (sum of all artists): __________  
+Rent:  $250 
+Expenses (TotalArtists + Rent):  ____________
+
+
+NetIncome (Income - Expenses): _____________
+
+Bonus (NetIncome * 0.10 if NetIncome is positive): _________
