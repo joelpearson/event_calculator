@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Closing Worksheet</title>
+    <style>
+        body {
+            font-family: monospace;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 1.2em;
+        }
+        h2 {
+            font-size: 1em;
+            margin-top: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        .row label {
+            width: 140px;
+        }
+        .row input {
+            width: 80px;
+            text-align: right;
+            font-family: monospace;
+        }
+        .row .result {
+            margin-left: 10px;
+            width: 100px;
+            text-align: right;
+        }
+        .total-row {
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+        }
+        .total-row label {
+            width: 200px;
+        }
+        .highlight {
+            background-color: #ffffcc;
+            padding: 2px 5px;
+        }
+        .negative {
+            color: red;
+        }
+        .positive {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Closing Worksheet</h1>
+
+    <h2>Cash Count</h2>
+    <div class="row">
+        <label>$100 x</label>
+        <input type="number" id="bills100" min="0" value="0">
+        <span class="result">= $<span id="total100">0.00</span></span>
+    </div>
+    <div class="row">
+        <label>$50 x</label>
+        <input type="number" id="bills50" min="0" value="0">
+        <span class="result">= $<span id="total50">0.00</span></span>
+    </div>
+    <div class="row">
+        <label>$20 x</label>
+        <input type="number" id="bills20" min="0" value="0">
+        <span class="result">= $<span id="total20">0.00</span></span>
+    </div>
+    <div class="row">
+        <label>$10 x</label>
+        <input type="number" id="bills10" min="0" value="0">
+        <span class="result">= $<span id="total10">0.00</span></span>
+    </div>
+    <div class="row">
+        <label>$5 x</label>
+        <input type="number" id="bills5" min="0" value="0">
+        <span class="result">= $<span id="total5">0.00</span></span>
+    </div>
+    <div class="row">
+        <label>$1 x</label>
+        <input type="number" id="bills1" min="0" value="0">
+        <span class="result">= $<span id="total1">0.00</span></span>
+    </div>
+
+    <div class="row total-row">
+        <label>Total Cash:</label>
+        <span class="highlight">$<span id="totalCash">0.00</span></span>
+    </div>
+
+    <div class="row">
+        <label>Electronic Payments:</label>
+        <span>$</span><input type="number" id="electronic" min="0" step="0.01" value="0">
+    </div>
+
+    <div class="row total-row">
+        <label>Income (Cash + Electronic):</label>
+        <span class="highlight">$<span id="income">0.00</span></span>
+    </div>
+
+    <h2>Artist Contract Rates</h2>
+    <div class="row">
+        <label>Caller:</label>
+        <span>$</span><input type="number" id="caller" min="0" step="0.01" value="0">
+    </div>
+    <div class="row">
+        <label>Sound:</label>
+        <span>$</span><input type="number" id="sound" min="0" step="0.01" value="0">
+    </div>
+    <div class="row">
+        <label>Band member 1:</label>
+        <span>$</span><input type="number" id="band1" min="0" step="0.01" value="0">
+    </div>
+    <div class="row">
+        <label>Band member 2:</label>
+        <span>$</span><input type="number" id="band2" min="0" step="0.01" value="0">
+    </div>
+    <div class="row">
+        <label>Band member 3:</label>
+        <span>$</span><input type="number" id="band3" min="0" step="0.01" value="0">
+    </div>
+    <div class="row">
+        <label>Band member 4:</label>
+        <span>$</span><input type="number" id="band4" min="0" step="0.01" value="0">
+    </div>
+    <div class="row">
+        <label>Band member 5:</label>
+        <span>$</span><input type="number" id="band5" min="0" step="0.01" value="0">
+    </div>
+
+    <div class="row total-row">
+        <label>Total Artists:</label>
+        <span>$<span id="totalArtists">0.00</span></span>
+    </div>
+    <div class="row">
+        <label>Rent:</label>
+        <span>$250.00</span>
+    </div>
+    <div class="row total-row">
+        <label>Expenses (Artists + Rent):</label>
+        <span class="highlight">$<span id="expenses">250.00</span></span>
+    </div>
+
+    <h2>Summary</h2>
+    <div class="row total-row">
+        <label>Net Income (Income - Expenses):</label>
+        <span class="highlight">$<span id="netIncome">-250.00</span></span>
+    </div>
+    <div class="row total-row">
+        <label>Bonus (10% if positive):</label>
+        <span class="highlight">$<span id="bonus">0.00</span></span>
+    </div>
+
+    <script>
+        var RENT = 250;
+
+        function getVal(id) {
+            var val = parseFloat(document.getElementById(id).value);
+            return isNaN(val) ? 0 : val;
+        }
+
+        function formatMoney(amount) {
+            return amount.toFixed(2);
+        }
+
+        function calculate() {
+            // Cash calculations
+            var cash100 = getVal('bills100') * 100;
+            var cash50 = getVal('bills50') * 50;
+            var cash20 = getVal('bills20') * 20;
+            var cash10 = getVal('bills10') * 10;
+            var cash5 = getVal('bills5') * 5;
+            var cash1 = getVal('bills1') * 1;
+
+            document.getElementById('total100').textContent = formatMoney(cash100);
+            document.getElementById('total50').textContent = formatMoney(cash50);
+            document.getElementById('total20').textContent = formatMoney(cash20);
+            document.getElementById('total10').textContent = formatMoney(cash10);
+            document.getElementById('total5').textContent = formatMoney(cash5);
+            document.getElementById('total1').textContent = formatMoney(cash1);
+
+            var totalCash = cash100 + cash50 + cash20 + cash10 + cash5 + cash1;
+            document.getElementById('totalCash').textContent = formatMoney(totalCash);
+
+            // Income
+            var electronic = getVal('electronic');
+            var income = totalCash + electronic;
+            document.getElementById('income').textContent = formatMoney(income);
+
+            // Artist expenses
+            var caller = getVal('caller');
+            var sound = getVal('sound');
+            var band1 = getVal('band1');
+            var band2 = getVal('band2');
+            var band3 = getVal('band3');
+            var band4 = getVal('band4');
+            var band5 = getVal('band5');
+
+            var totalArtists = caller + sound + band1 + band2 + band3 + band4 + band5;
+            document.getElementById('totalArtists').textContent = formatMoney(totalArtists);
+
+            // Total expenses
+            var expenses = totalArtists + RENT;
+            document.getElementById('expenses').textContent = formatMoney(expenses);
+
+            // Net income
+            var netIncome = income - expenses;
+            var netIncomeEl = document.getElementById('netIncome');
+            netIncomeEl.textContent = formatMoney(netIncome);
+            netIncomeEl.className = netIncome >= 0 ? 'positive' : 'negative';
+
+            // Bonus
+            var bonus = netIncome > 0 ? netIncome * 0.10 : 0;
+            document.getElementById('bonus').textContent = formatMoney(bonus);
+        }
+
+        // Add event listeners to all inputs
+        var inputs = document.querySelectorAll('input');
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener('input', calculate);
+        }
+
+        // Initial calculation
+        calculate();
+    </script>
+</body>
+</html>
