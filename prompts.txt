@@ -9,3 +9,7 @@ column 1 contains labels and descriptions.
 column 2 contains the input fields.
 column 3 contains the calculated values.
 Also, save all of these prompts into a file called prompts.txt .
+
+Prompt 3:
+change the rent from a predefined value into an input field. prefill it with 250.
+prefill the caller, sound, band1, and band2 fields with 75.
