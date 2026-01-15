@@ -15,6 +15,10 @@
             padding: 20px;
             background-color: #fff;
             color: #000;
+            box-sizing: border-box;
+        }
+        *, *::before, *::after {
+            box-sizing: inherit;
         }
         h1 {
             font-size: 1.2em;
@@ -27,7 +31,7 @@
         }
         .grid {
             display: grid;
-            grid-template-columns: 200px 100px 120px;
+            grid-template-columns: 1fr auto auto;
             gap: 8px 10px;
             align-items: center;
         }
@@ -48,7 +52,7 @@
         .total-row-wrapper {
             grid-column: 1 / -1;
             display: grid;
-            grid-template-columns: 310px 120px;
+            grid-template-columns: 1fr auto;
             gap: 10px;
             align-items: center;
             font-weight: bold;
@@ -64,6 +68,22 @@
         }
         .positive {
             color: green;
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                margin: 10px;
+            }
+            .grid {
+                gap: 6px 8px;
+            }
+            .col-input input {
+                width: 70px;
+                font-size: 16px;
+            }
+            input {
+                font-size: 16px;
+            }
         }
         @media (prefers-color-scheme: dark) {
             body {

@@ -24,3 +24,6 @@ Prompt 5:
 Some of the calculated values such as "Total Cash" have a light background even in dark mode, which makes it hard to read. please adjust to be readable in dark or light mode.
 When a row on the page has no input field in the second column, allow the labels in the first column to expand into the second column.
 remove the "Summary" line.
+
+Prompt 6:
+make the layout responsive so that the app can be used on a phone.
