@@ -27,7 +27,8 @@
                 border: 1px solid #444;
             }
             .highlight {
-                background-color: #3a3a00;
+                background-color: #4a4a00;
+                color: #ffff99;
             }
             h2 {
                 border-bottom-color: #444;
@@ -68,7 +69,7 @@
         .total-row-wrapper {
             grid-column: 1 / -1;
             display: grid;
-            grid-template-columns: 200px 100px 120px;
+            grid-template-columns: 310px 120px;
             gap: 10px;
             align-items: center;
             font-weight: bold;
@@ -119,7 +120,6 @@
 
         <div class="total-row-wrapper">
             <div class="col-label">Total Cash:</div>
-            <div class="col-input"></div>
             <div class="col-result"><span class="highlight">$<span id="totalCash">0.00</span></span></div>
         </div>
 
@@ -129,7 +129,6 @@
 
         <div class="total-row-wrapper">
             <div class="col-label">Income (Cash + Electronic):</div>
-            <div class="col-input"></div>
             <div class="col-result"><span class="highlight">$<span id="income">0.00</span></span></div>
         </div>
 
@@ -165,7 +164,6 @@
 
         <div class="total-row-wrapper">
             <div class="col-label">Total Artists:</div>
-            <div class="col-input"></div>
             <div class="col-result">$<span id="totalArtists">0.00</span></div>
         </div>
 
@@ -175,21 +173,16 @@
 
         <div class="total-row-wrapper">
             <div class="col-label">Expenses (Artists + Rent):</div>
-            <div class="col-input"></div>
             <div class="col-result"><span class="highlight">$<span id="expenses">250.00</span></span></div>
         </div>
 
-        <h2>Summary</h2>
-
         <div class="total-row-wrapper">
             <div class="col-label">Net Income (Income - Expenses):</div>
-            <div class="col-input"></div>
             <div class="col-result"><span class="highlight">$<span id="netIncome">-250.00</span></span></div>
         </div>
 
         <div class="total-row-wrapper">
             <div class="col-label">Bonus (10% if positive, rounded up to nearest $5):</div>
-            <div class="col-input"></div>
             <div class="col-result"><span class="highlight">$<span id="bonus">0.00</span></span></div>
         </div>
     </div>

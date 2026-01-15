@@ -19,3 +19,8 @@ the label next to Bonus should be changed to say "(10% if positive, rounded up t
 When calculating the bonus, round up to nearest $5.
 Also, please fix the border-top lines, which are not always lining up across the three columns. same with the border-bottom lines.
 Also, automatically use the system's light or dark mode for the page.
+
+Prompt 5:
+Some of the calculated values such as "Total Cash" have a light background even in dark mode, which makes it hard to read. please adjust to be readable in dark or light mode.
+When a row on the page has no input field in the second column, allow the labels in the first column to expand into the second column.
+remove the "Summary" line.
