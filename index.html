@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Closing Worksheet</title>
     <style>
+        :root {
+            color-scheme: light dark;
+        }
         body {
             font-family: monospace;
-            max-width: 500px;
+            max-width: 600px;
             margin: 20px auto;
             padding: 20px;
+            background-color: #fff;
+            color: #000;
         }
         h1 {
             font-size: 1.2em;
@@ -18,33 +23,37 @@
             font-size: 1em;
             margin-top: 20px;
             border-bottom: 1px solid #ccc;
+            grid-column: 1 / -1;
         }
-        .row {
-            display: flex;
+        .grid {
+            display: grid;
+            grid-template-columns: 200px 100px 120px;
+            gap: 8px 10px;
             align-items: center;
-            margin: 8px 0;
         }
-        .row label {
-            width: 140px;
+        .col-label {
+            text-align: left;
         }
-        .row input {
+        .col-input {
+            text-align: right;
+        }
+        .col-input input {
             width: 80px;
             text-align: right;
             font-family: monospace;
         }
-        .row .result {
-            margin-left: 10px;
-            width: 100px;
+        .col-result {
             text-align: right;
         }
-        .total-row {
+        .total-row-wrapper {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 310px 120px;
+            gap: 10px;
+            align-items: center;
             font-weight: bold;
-            margin-top: 15px;
             padding-top: 10px;
             border-top: 1px solid #ccc;
-        }
-        .total-row label {
-            width: 200px;
         }
         .highlight {
             background-color: #ffffcc;
@@ -56,114 +65,129 @@
         .positive {
             color: green;
         }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+            }
+            input {
+                background-color: #2a2a2a;
+                color: #e0e0e0;
+                border: 1px solid #444;
+            }
+            .highlight {
+                background-color: #4a4a00;
+                color: #ffff99;
+            }
+            h2 {
+                border-bottom-color: #444;
+            }
+            .total-row-wrapper {
+                border-top-color: #444;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>Event Closing Worksheet</h1>
 
-    <h2>Cash Count</h2>
-    <div class="row">
-        <label>$100 x</label>
-        <input type="number" id="bills100" min="0" value="0">
-        <span class="result">= $<span id="total100">0.00</span></span>
-    </div>
-    <div class="row">
-        <label>$50 x</label>
-        <input type="number" id="bills50" min="0" value="0">
-        <span class="result">= $<span id="total50">0.00</span></span>
-    </div>
-    <div class="row">
-        <label>$20 x</label>
-        <input type="number" id="bills20" min="0" value="0">
-        <span class="result">= $<span id="total20">0.00</span></span>
-    </div>
-    <div class="row">
-        <label>$10 x</label>
-        <input type="number" id="bills10" min="0" value="0">
-        <span class="result">= $<span id="total10">0.00</span></span>
-    </div>
-    <div class="row">
-        <label>$5 x</label>
-        <input type="number" id="bills5" min="0" value="0">
-        <span class="result">= $<span id="total5">0.00</span></span>
-    </div>
-    <div class="row">
-        <label>$1 x</label>
-        <input type="number" id="bills1" min="0" value="0">
-        <span class="result">= $<span id="total1">0.00</span></span>
-    </div>
+    <div class="grid">
+        <h2>Cash Count</h2>
 
-    <div class="row total-row">
-        <label>Total Cash:</label>
-        <span class="highlight">$<span id="totalCash">0.00</span></span>
-    </div>
+        <div class="col-label">$100 x</div>
+        <div class="col-input"><input type="number" id="bills100" min="0" value="0"></div>
+        <div class="col-result">= $<span id="total100">0.00</span></div>
 
-    <div class="row">
-        <label>Electronic Payments:</label>
-        <span>$</span><input type="number" id="electronic" min="0" step="0.01" value="0">
-    </div>
+        <div class="col-label">$50 x</div>
+        <div class="col-input"><input type="number" id="bills50" min="0" value="0"></div>
+        <div class="col-result">= $<span id="total50">0.00</span></div>
 
-    <div class="row total-row">
-        <label>Income (Cash + Electronic):</label>
-        <span class="highlight">$<span id="income">0.00</span></span>
-    </div>
+        <div class="col-label">$20 x</div>
+        <div class="col-input"><input type="number" id="bills20" min="0" value="0"></div>
+        <div class="col-result">= $<span id="total20">0.00</span></div>
 
-    <h2>Artist Contract Rates</h2>
-    <div class="row">
-        <label>Caller:</label>
-        <span>$</span><input type="number" id="caller" min="0" step="0.01" value="0">
-    </div>
-    <div class="row">
-        <label>Sound:</label>
-        <span>$</span><input type="number" id="sound" min="0" step="0.01" value="0">
-    </div>
-    <div class="row">
-        <label>Band member 1:</label>
-        <span>$</span><input type="number" id="band1" min="0" step="0.01" value="0">
-    </div>
-    <div class="row">
-        <label>Band member 2:</label>
-        <span>$</span><input type="number" id="band2" min="0" step="0.01" value="0">
-    </div>
-    <div class="row">
-        <label>Band member 3:</label>
-        <span>$</span><input type="number" id="band3" min="0" step="0.01" value="0">
-    </div>
-    <div class="row">
-        <label>Band member 4:</label>
-        <span>$</span><input type="number" id="band4" min="0" step="0.01" value="0">
-    </div>
-    <div class="row">
-        <label>Band member 5:</label>
-        <span>$</span><input type="number" id="band5" min="0" step="0.01" value="0">
-    </div>
+        <div class="col-label">$10 x</div>
+        <div class="col-input"><input type="number" id="bills10" min="0" value="0"></div>
+        <div class="col-result">= $<span id="total10">0.00</span></div>
 
-    <div class="row total-row">
-        <label>Total Artists:</label>
-        <span>$<span id="totalArtists">0.00</span></span>
-    </div>
-    <div class="row">
-        <label>Rent:</label>
-        <span>$250.00</span>
-    </div>
-    <div class="row total-row">
-        <label>Expenses (Artists + Rent):</label>
-        <span class="highlight">$<span id="expenses">250.00</span></span>
-    </div>
+        <div class="col-label">$5 x</div>
+        <div class="col-input"><input type="number" id="bills5" min="0" value="0"></div>
+        <div class="col-result">= $<span id="total5">0.00</span></div>
 
-    <h2>Summary</h2>
-    <div class="row total-row">
-        <label>Net Income (Income - Expenses):</label>
-        <span class="highlight">$<span id="netIncome">-250.00</span></span>
-    </div>
-    <div class="row total-row">
-        <label>Bonus (10% if positive):</label>
-        <span class="highlight">$<span id="bonus">0.00</span></span>
+        <div class="col-label">$1 x</div>
+        <div class="col-input"><input type="number" id="bills1" min="0" value="0"></div>
+        <div class="col-result">= $<span id="total1">0.00</span></div>
+
+        <div class="total-row-wrapper">
+            <div class="col-label">Total Cash:</div>
+            <div class="col-result"><span class="highlight">$<span id="totalCash">0.00</span></span></div>
+        </div>
+
+        <div class="col-label">Electronic Payments:</div>
+        <div class="col-input">$<input type="number" id="electronic" min="0" step="0.01" value="0"></div>
+        <div class="col-result"></div>
+
+        <div class="total-row-wrapper">
+            <div class="col-label">Income (Cash + Electronic):</div>
+            <div class="col-result"><span class="highlight">$<span id="income">0.00</span></span></div>
+        </div>
+
+        <h2>Artist Contract Rates</h2>
+
+        <div class="col-label">Caller:</div>
+        <div class="col-input">$<input type="number" id="caller" min="0" step="0.01" value="75"></div>
+        <div class="col-result"></div>
+
+        <div class="col-label">Sound:</div>
+        <div class="col-input">$<input type="number" id="sound" min="0" step="0.01" value="75"></div>
+        <div class="col-result"></div>
+
+        <div class="col-label">Band member 1:</div>
+        <div class="col-input">$<input type="number" id="band1" min="0" step="0.01" value="75"></div>
+        <div class="col-result"></div>
+
+        <div class="col-label">Band member 2:</div>
+        <div class="col-input">$<input type="number" id="band2" min="0" step="0.01" value="75"></div>
+        <div class="col-result"></div>
+
+        <div class="col-label">Band member 3:</div>
+        <div class="col-input">$<input type="number" id="band3" min="0" step="0.01" value="0"></div>
+        <div class="col-result"></div>
+
+        <div class="col-label">Band member 4:</div>
+        <div class="col-input">$<input type="number" id="band4" min="0" step="0.01" value="0"></div>
+        <div class="col-result"></div>
+
+        <div class="col-label">Band member 5:</div>
+        <div class="col-input">$<input type="number" id="band5" min="0" step="0.01" value="0"></div>
+        <div class="col-result"></div>
+
+        <div class="total-row-wrapper">
+            <div class="col-label">Total Artists:</div>
+            <div class="col-result">$<span id="totalArtists">0.00</span></div>
+        </div>
+
+        <div class="col-label">Rent:</div>
+        <div class="col-input">$<input type="number" id="rent" min="0" step="0.01" value="250"></div>
+        <div class="col-result"></div>
+
+        <div class="total-row-wrapper">
+            <div class="col-label">Expenses (Artists + Rent):</div>
+            <div class="col-result"><span class="highlight">$<span id="expenses">250.00</span></span></div>
+        </div>
+
+        <div class="total-row-wrapper">
+            <div class="col-label">Net Income (Income - Expenses):</div>
+            <div class="col-result"><span class="highlight">$<span id="netIncome">-250.00</span></span></div>
+        </div>
+
+        <div class="total-row-wrapper">
+            <div class="col-label">Bonus (10% if positive, rounded up to nearest $5):</div>
+            <div class="col-result"><span class="highlight">$<span id="bonus">0.00</span></span></div>
+        </div>
     </div>
 
     <script>
-        var RENT = 250;
-
         function getVal(id) {
             var val = parseFloat(document.getElementById(id).value);
             return isNaN(val) ? 0 : val;
@@ -210,7 +234,8 @@
             document.getElementById('totalArtists').textContent = formatMoney(totalArtists);
 
             // Total expenses
-            var expenses = totalArtists + RENT;
+            var rent = getVal('rent');
+            var expenses = totalArtists + rent;
             document.getElementById('expenses').textContent = formatMoney(expenses);
 
             // Net income
@@ -219,8 +244,8 @@
             netIncomeEl.textContent = formatMoney(netIncome);
             netIncomeEl.className = netIncome >= 0 ? 'positive' : 'negative';
 
-            // Bonus
-            var bonus = netIncome > 0 ? netIncome * 0.10 : 0;
+            // Bonus (10% rounded up to nearest $5)
+            var bonus = netIncome > 0 ? Math.ceil(netIncome * 0.10 / 5) * 5 : 0;
             document.getElementById('bonus').textContent = formatMoney(bonus);
         }
 

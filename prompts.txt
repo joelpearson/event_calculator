@@ -1,0 +1,26 @@
+Prompt 1:
+closing_worksheet.txt is a paper worksheet used to manually calculate the income and expenses for a dance event. The person enters the income amounts and the contract rates for each of the artists, and then manually calculates the income, expenses, and bonus amounts.
+Create a new javascript app that allows the user to enter the cash amounts, electronic payment amount, and the contract rates for the artists. the program should automatically calculate the remaining amounts, updating them immediately as numbers are entered.
+The app should be as simple as possible, following the general layout of closing_worksheet.txt . do not use any external libraries, only built-in javascript features.
+
+Prompt 2:
+move each of the existing elements into one of 3 columns.
+column 1 contains labels and descriptions.
+column 2 contains the input fields.
+column 3 contains the calculated values.
+Also, save all of these prompts into a file called prompts.txt .
+
+Prompt 3:
+change the rent from a predefined value into an input field. prefill it with 250.
+prefill the caller, sound, band1, and band2 fields with 75.
+
+Prompt 4:
+the label next to Bonus should be changed to say "(10% if positive, rounded up to nearest $5)".
+When calculating the bonus, round up to nearest $5.
+Also, please fix the border-top lines, which are not always lining up across the three columns. same with the border-bottom lines.
+Also, automatically use the system's light or dark mode for the page.
+
+Prompt 5:
+Some of the calculated values such as "Total Cash" have a light background even in dark mode, which makes it hard to read. please adjust to be readable in dark or light mode.
+When a row on the page has no input field in the second column, allow the labels in the first column to expand into the second column.
+remove the "Summary" line.
