@@ -13,3 +13,9 @@ Also, save all of these prompts into a file called prompts.txt .
 Prompt 3:
 change the rent from a predefined value into an input field. prefill it with 250.
 prefill the caller, sound, band1, and band2 fields with 75.
+
+Prompt 4:
+the label next to Bonus should be changed to say "(10% if positive, rounded up to nearest $5)".
+When calculating the bonus, round up to nearest $5.
+Also, please fix the border-top lines, which are not always lining up across the three columns. same with the border-bottom lines.
+Also, automatically use the system's light or dark mode for the page.
