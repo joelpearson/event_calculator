@@ -41,7 +41,7 @@
         .col-input {
             text-align: right;
         }
-        .col-input input {
+        input {
             width: 80px;
             text-align: right;
             font-family: monospace;
@@ -62,6 +62,13 @@
         .total-row-wrapper .col-label {
             text-align: left;
         }
+        .input-row-wrapper {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+        }
         @media (max-width: 480px) {
             body {
                 padding: 10px;
@@ -70,11 +77,8 @@
             .grid {
                 gap: 6px 8px;
             }
-            .col-input input {
-                width: 70px;
-                font-size: 16px;
-            }
             input {
+                width: 70px;
                 font-size: 16px;
             }
         }
@@ -132,9 +136,10 @@
             <div class="col-result">$<span id="totalCash">0.00</span></div>
         </div>
 
-        <div class="col-label">Electronic Payments:</div>
-        <div class="col-input">$<input type="number" id="electronic" min="0" step="0.01" value="0"></div>
-        <div class="col-result"></div>
+        <div class="input-row-wrapper">
+            <div class="col-label">Electronic Payments:</div>
+            <div class="col-result">$<input type="number" id="electronic" min="0" step="0.01" value="0"></div>
+        </div>
 
         <div class="total-row-wrapper">
             <div class="col-label">Income (Cash + Electronic):</div>
@@ -143,42 +148,50 @@
 
         <h2>Artist Contract Rates</h2>
 
-        <div class="col-label">Caller:</div>
-        <div class="col-input">$<input type="number" id="caller" min="0" step="0.01" value="75"></div>
-        <div class="col-result"></div>
+        <div class="input-row-wrapper">
+            <div class="col-label">Caller:</div>
+            <div class="col-result">$<input type="number" id="caller" min="0" step="0.01" value="75"></div>
+        </div>
 
-        <div class="col-label">Sound:</div>
-        <div class="col-input">$<input type="number" id="sound" min="0" step="0.01" value="75"></div>
-        <div class="col-result"></div>
+        <div class="input-row-wrapper">
+            <div class="col-label">Sound:</div>
+            <div class="col-result">$<input type="number" id="sound" min="0" step="0.01" value="75"></div>
+        </div>
 
-        <div class="col-label">Band member 1:</div>
-        <div class="col-input">$<input type="number" id="band1" min="0" step="0.01" value="75"></div>
-        <div class="col-result"></div>
+        <div class="input-row-wrapper">
+            <div class="col-label">Band member 1:</div>
+            <div class="col-result">$<input type="number" id="band1" min="0" step="0.01" value="75"></div>
+        </div>
 
-        <div class="col-label">Band member 2:</div>
-        <div class="col-input">$<input type="number" id="band2" min="0" step="0.01" value="75"></div>
-        <div class="col-result"></div>
+        <div class="input-row-wrapper">
+            <div class="col-label">Band member 2:</div>
+            <div class="col-result">$<input type="number" id="band2" min="0" step="0.01" value="75"></div>
+        </div>
 
-        <div class="col-label">Band member 3:</div>
-        <div class="col-input">$<input type="number" id="band3" min="0" step="0.01" value="0"></div>
-        <div class="col-result"></div>
+        <div class="input-row-wrapper">
+            <div class="col-label">Band member 3:</div>
+            <div class="col-result">$<input type="number" id="band3" min="0" step="0.01" value="0"></div>
+        </div>
 
-        <div class="col-label">Band member 4:</div>
-        <div class="col-input">$<input type="number" id="band4" min="0" step="0.01" value="0"></div>
-        <div class="col-result"></div>
+        <div class="input-row-wrapper">
+            <div class="col-label">Band member 4:</div>
+            <div class="col-result">$<input type="number" id="band4" min="0" step="0.01" value="0"></div>
+        </div>
 
-        <div class="col-label">Band member 5:</div>
-        <div class="col-input">$<input type="number" id="band5" min="0" step="0.01" value="0"></div>
-        <div class="col-result"></div>
+        <div class="input-row-wrapper">
+            <div class="col-label">Band member 5:</div>
+            <div class="col-result">$<input type="number" id="band5" min="0" step="0.01" value="0"></div>
+        </div>
 
         <div class="total-row-wrapper">
             <div class="col-label">Total Artists:</div>
             <div class="col-result">$<span id="totalArtists">0.00</span></div>
         </div>
 
-        <div class="col-label">Rent:</div>
-        <div class="col-input">$<input type="number" id="rent" min="0" step="0.01" value="250"></div>
-        <div class="col-result"></div>
+        <div class="input-row-wrapper">
+            <div class="col-label">Rent:</div>
+            <div class="col-result">$<input type="number" id="rent" min="0" step="0.01" value="250"></div>
+        </div>
 
         <div class="total-row-wrapper">
             <div class="col-label">Expenses (Artists + Rent):</div>

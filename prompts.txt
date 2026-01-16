@@ -40,3 +40,6 @@ Change title to "Closing Worksheet".
 Change header to "Closing Worksheet v0.1".
 Change the label for the bonus to "Bonus (10%, rounded up, nearest $1)". Change the calculation to round up to the nearest $1 (instead of $5).
 Keep labels for input fields right justified, but change all other labels to be left justified.
+
+Prompt 9:
+Move the input fields for electronic payments, caller, sound, band members, and rent to the right column.
