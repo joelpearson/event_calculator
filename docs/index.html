@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Closing Worksheet (under development)</title>
+    <title>Closing Worksheet</title>
     <style>
         :root {
             color-scheme: light dark;
@@ -59,6 +59,9 @@
             padding-top: 10px;
             border-top: 1px solid #ccc;
         }
+        .total-row-wrapper .col-label {
+            text-align: left;
+        }
         @media (max-width: 480px) {
             body {
                 padding: 10px;
@@ -95,7 +98,7 @@
     </style>
 </head>
 <body>
-    <h1>Event Closing Worksheet (under development)</h1>
+    <h1>Closing Worksheet v0.1</h1>
 
     <div class="grid">
         <h2>Cash Count</h2>
@@ -188,7 +191,7 @@
         </div>
 
         <div class="total-row-wrapper">
-            <div class="col-label">Bonus (10% if positive, rounded up to nearest $5):</div>
+            <div class="col-label">Bonus (10%, rounded up, nearest $1):</div>
             <div class="col-result">$<span id="bonus">0.00</span></div>
         </div>
     </div>
@@ -248,8 +251,8 @@
             var netIncome = income - expenses;
             document.getElementById('netIncome').textContent = formatMoney(netIncome);
 
-            // Bonus (10% rounded up to nearest $5)
-            var bonus = netIncome > 0 ? Math.ceil(netIncome * 0.10 / 5) * 5 : 0;
+            // Bonus (10% rounded up to nearest $1)
+            var bonus = netIncome > 0 ? Math.ceil(netIncome * 0.10) : 0;
             document.getElementById('bonus').textContent = formatMoney(bonus);
         }
 
