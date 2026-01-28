@@ -148,40 +148,33 @@
 
         <h2>Artist Contract Rates</h2>
 
-        <div class="input-row-wrapper">
-            <div class="col-label">Caller:</div>
-            <div class="col-result">$<input type="number" id="caller" min="0" step="0.01" value="75"></div>
-        </div>
+        <div class="col-label">Caller:</div>
+        <div class="col-input">$<input type="number" id="caller" min="0" step="0.01" value="75"></div>
+        <div class="col-result">= $<span id="callerTotal">75.00</span></div>
 
-        <div class="input-row-wrapper">
-            <div class="col-label">Sound:</div>
-            <div class="col-result">$<input type="number" id="sound" min="0" step="0.01" value="75"></div>
-        </div>
+        <div class="col-label">Sound:</div>
+        <div class="col-input">$<input type="number" id="sound" min="0" step="0.01" value="75"></div>
+        <div class="col-result">= $<span id="soundTotal">75.00</span></div>
 
-        <div class="input-row-wrapper">
-            <div class="col-label">Band member 1:</div>
-            <div class="col-result">$<input type="number" id="band1" min="0" step="0.01" value="75"></div>
-        </div>
+        <div class="col-label">Band member 1:</div>
+        <div class="col-input">$<input type="number" id="band1" min="0" step="0.01" value="75"></div>
+        <div class="col-result">= $<span id="band1Total">75.00</span></div>
 
-        <div class="input-row-wrapper">
-            <div class="col-label">Band member 2:</div>
-            <div class="col-result">$<input type="number" id="band2" min="0" step="0.01" value="75"></div>
-        </div>
+        <div class="col-label">Band member 2:</div>
+        <div class="col-input">$<input type="number" id="band2" min="0" step="0.01" value="75"></div>
+        <div class="col-result">= $<span id="band2Total">75.00</span></div>
 
-        <div class="input-row-wrapper">
-            <div class="col-label">Band member 3:</div>
-            <div class="col-result">$<input type="number" id="band3" min="0" step="0.01" value="0"></div>
-        </div>
+        <div class="col-label">Band member 3:</div>
+        <div class="col-input">$<input type="number" id="band3" min="0" step="0.01" value="0"></div>
+        <div class="col-result">= $<span id="band3Total">0.00</span></div>
 
-        <div class="input-row-wrapper">
-            <div class="col-label">Band member 4:</div>
-            <div class="col-result">$<input type="number" id="band4" min="0" step="0.01" value="0"></div>
-        </div>
+        <div class="col-label">Band member 4:</div>
+        <div class="col-input">$<input type="number" id="band4" min="0" step="0.01" value="0"></div>
+        <div class="col-result">= $<span id="band4Total">0.00</span></div>
 
-        <div class="input-row-wrapper">
-            <div class="col-label">Band member 5:</div>
-            <div class="col-result">$<input type="number" id="band5" min="0" step="0.01" value="0"></div>
-        </div>
+        <div class="col-label">Band member 5:</div>
+        <div class="col-input">$<input type="number" id="band5" min="0" step="0.01" value="0"></div>
+        <div class="col-result">= $<span id="band5Total">0.00</span></div>
 
         <div class="total-row-wrapper">
             <div class="col-label">Total Artists:</div>
@@ -255,6 +248,16 @@
             var band3 = getVal('band3');
             var band4 = getVal('band4');
             var band5 = getVal('band5');
+            var bonusActual = getVal('bonusActual');
+
+            // Artist totals (contract + bonus)
+            document.getElementById('callerTotal').textContent = formatMoney(caller + bonusActual);
+            document.getElementById('soundTotal').textContent = formatMoney(sound + bonusActual);
+            document.getElementById('band1Total').textContent = formatMoney(band1 + bonusActual);
+            document.getElementById('band2Total').textContent = formatMoney(band2 + bonusActual);
+            document.getElementById('band3Total').textContent = formatMoney(band3 + bonusActual);
+            document.getElementById('band4Total').textContent = formatMoney(band4 + bonusActual);
+            document.getElementById('band5Total').textContent = formatMoney(band5 + bonusActual);
 
             var totalArtists = caller + sound + band1 + band2 + band3 + band4 + band5;
             document.getElementById('totalArtists').textContent = formatMoney(totalArtists);
@@ -286,6 +289,7 @@
         document.getElementById('copyBonus').addEventListener('click', function() {
             var bonusValue = document.getElementById('bonus').textContent;
             document.getElementById('bonusActual').value = bonusValue;
+            calculate();
         });
 
         // Initial calculation
