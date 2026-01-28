@@ -58,3 +58,6 @@ Prompt 12:
 change the seven rows starting with "caller" and ending with "band member 5" so that they match the layout of the rows following "Cash count".  There should be a div with a col-label class, a div with a col-input class, and a div with a col-result class in that order for each row.
 The input field in col-result div should be moved to col-input div.
 The  col-result div should be the result of the col-input div input added to the the bonusActual input. This value should be automatically updated whenever either of those two values change.
+
+Prompt 13:
+for the 7 artist rows, if col-input is equal to 0, col-result should remain 0.00.

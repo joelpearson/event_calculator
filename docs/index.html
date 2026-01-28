@@ -250,14 +250,14 @@
             var band5 = getVal('band5');
             var bonusActual = getVal('bonusActual');
 
-            // Artist totals (contract + bonus)
-            document.getElementById('callerTotal').textContent = formatMoney(caller + bonusActual);
-            document.getElementById('soundTotal').textContent = formatMoney(sound + bonusActual);
-            document.getElementById('band1Total').textContent = formatMoney(band1 + bonusActual);
-            document.getElementById('band2Total').textContent = formatMoney(band2 + bonusActual);
-            document.getElementById('band3Total').textContent = formatMoney(band3 + bonusActual);
-            document.getElementById('band4Total').textContent = formatMoney(band4 + bonusActual);
-            document.getElementById('band5Total').textContent = formatMoney(band5 + bonusActual);
+            // Artist totals (contract + bonus, but 0 if contract is 0)
+            document.getElementById('callerTotal').textContent = formatMoney(caller > 0 ? caller + bonusActual : 0);
+            document.getElementById('soundTotal').textContent = formatMoney(sound > 0 ? sound + bonusActual : 0);
+            document.getElementById('band1Total').textContent = formatMoney(band1 > 0 ? band1 + bonusActual : 0);
+            document.getElementById('band2Total').textContent = formatMoney(band2 > 0 ? band2 + bonusActual : 0);
+            document.getElementById('band3Total').textContent = formatMoney(band3 > 0 ? band3 + bonusActual : 0);
+            document.getElementById('band4Total').textContent = formatMoney(band4 > 0 ? band4 + bonusActual : 0);
+            document.getElementById('band5Total').textContent = formatMoney(band5 > 0 ? band5 + bonusActual : 0);
 
             var totalArtists = caller + sound + band1 + band2 + band3 + band4 + band5;
             document.getElementById('totalArtists').textContent = formatMoney(totalArtists);
