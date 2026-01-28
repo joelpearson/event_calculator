@@ -47,3 +47,9 @@ Move the input fields for electronic payments, caller, sound, band members, and 
 Prompt 10:
 add a new row at the end of the page. this row should have 3 divs, a div with a col-label class, a div with a col-input class, and a div with a col-result class. The first div should have the text "Bonus - Actual:". The second div should have an input button that says "Copy". The third div should hold a number with a default of $0.00.
 When the copy button is pressed, the value from the result on the previous row should be copied to the result on this row.
+
+Prompt 11:
+Change the label on the next-to-last row to say "Bonus - Calculated".
+Make the label on the last row left justified.
+Change the label on the copy button to say "Copy calculated".
+Make the result in the last column an input box so that a value can be manually input. The copy button should still copy the value from the previous row when pressed.
