@@ -207,6 +207,10 @@
             <div class="col-label">Bonus (10%, rounded up, nearest $1):</div>
             <div class="col-result">$<span id="bonus">0.00</span></div>
         </div>
+
+        <div class="col-label">Bonus - Actual:</div>
+        <div class="col-input"><button id="copyBonus">Copy</button></div>
+        <div class="col-result">$<span id="bonusActual">0.00</span></div>
     </div>
 
     <script>
@@ -277,6 +281,12 @@
                 this.select();
             });
         }
+
+        // Copy bonus button
+        document.getElementById('copyBonus').addEventListener('click', function() {
+            var bonusValue = document.getElementById('bonus').textContent;
+            document.getElementById('bonusActual').textContent = bonusValue;
+        });
 
         // Initial calculation
         calculate();

@@ -43,3 +43,7 @@ Keep labels for input fields right justified, but change all other labels to be 
 
 Prompt 9:
 Move the input fields for electronic payments, caller, sound, band members, and rent to the right column.
+
+Prompt 10:
+add a new row at the end of the page. this row should have 3 divs, a div with a col-label class, a div with a col-input class, and a div with a col-result class. The first div should have the text "Bonus - Actual:". The second div should have an input button that says "Copy". The third div should hold a number with a default of $0.00.
+When the copy button is pressed, the value from the result on the previous row should be copied to the result on this row.
