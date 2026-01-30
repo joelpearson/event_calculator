@@ -72,3 +72,6 @@ Prompt 15:
 For the bonus column in the artist rows, add " + " before the number and add a little horizontal space at the left edge of that column.
 Add a little vertical space between the "Total Artists" row and the one that follows it because they're almost overlapping right now.
 Change the page header to say "v0.2" instead of "v0.1".
+
+Prompt 16:
+The "Total Artists" and "Rent" rows should have 4 columns that line up with the artist columns above them. The result value for "Total Artists" should be in the second column instead of the last column. The input for Rent should also be in the second column instead of the last column. The label "Expenses (Artists + Rent)" should be changed to "Pre-bonus Expenses (Artists + Rent)". Change the label "Net Income (Income - Expenses)" to "Pre-bonus Net Income (Income - Expenses)". Change "Total Artists" to "Artist Totals".
