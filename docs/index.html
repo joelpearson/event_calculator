@@ -69,6 +69,22 @@
             gap: 10px;
             align-items: center;
         }
+        .artist-grid {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 8px 10px;
+            align-items: center;
+        }
+        .artist-grid h2 {
+            grid-column: 1 / -1;
+        }
+        .artist-grid .col-header {
+            text-align: right;
+            font-weight: bold;
+        }
+        .artist-grid .total-row-wrapper {
+            grid-template-columns: 1fr auto auto auto;
+        }
         @media (max-width: 480px) {
             body {
                 padding: 10px;
@@ -145,42 +161,60 @@
             <div class="col-label">Income (Cash + Electronic):</div>
             <div class="col-result">$<span id="income">0.00</span></div>
         </div>
+    </div>
 
-        <h2>Artist Contract Rates</h2>
+    <div class="artist-grid">
+        <h2>Artist Rates</h2>
+
+        <div></div>
+        <div class="col-header">Contract</div>
+        <div class="col-header">Bonus</div>
+        <div class="col-header">Total</div>
 
         <div class="col-label">Caller:</div>
         <div class="col-input">$<input type="number" id="caller" min="0" step="0.01" value="75"></div>
+        <div class="col-result">$<span id="callerBonus">0.00</span></div>
         <div class="col-result">= $<span id="callerTotal">75.00</span></div>
 
         <div class="col-label">Sound:</div>
         <div class="col-input">$<input type="number" id="sound" min="0" step="0.01" value="75"></div>
+        <div class="col-result">$<span id="soundBonus">0.00</span></div>
         <div class="col-result">= $<span id="soundTotal">75.00</span></div>
 
-        <div class="col-label">Band member 1:</div>
+        <div class="col-label">Band 1:</div>
         <div class="col-input">$<input type="number" id="band1" min="0" step="0.01" value="75"></div>
+        <div class="col-result">$<span id="band1Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band1Total">75.00</span></div>
 
-        <div class="col-label">Band member 2:</div>
+        <div class="col-label">Band 2:</div>
         <div class="col-input">$<input type="number" id="band2" min="0" step="0.01" value="75"></div>
+        <div class="col-result">$<span id="band2Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band2Total">75.00</span></div>
 
-        <div class="col-label">Band member 3:</div>
+        <div class="col-label">Band 3:</div>
         <div class="col-input">$<input type="number" id="band3" min="0" step="0.01" value="0"></div>
+        <div class="col-result">$<span id="band3Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band3Total">0.00</span></div>
 
-        <div class="col-label">Band member 4:</div>
+        <div class="col-label">Band 4:</div>
         <div class="col-input">$<input type="number" id="band4" min="0" step="0.01" value="0"></div>
+        <div class="col-result">$<span id="band4Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band4Total">0.00</span></div>
 
-        <div class="col-label">Band member 5:</div>
+        <div class="col-label">Band 5:</div>
         <div class="col-input">$<input type="number" id="band5" min="0" step="0.01" value="0"></div>
+        <div class="col-result">$<span id="band5Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band5Total">0.00</span></div>
 
         <div class="total-row-wrapper">
             <div class="col-label">Total Artists:</div>
+            <div></div>
+            <div></div>
             <div class="col-result">$<span id="totalArtists">0.00</span></div>
         </div>
+    </div>
 
+    <div class="grid">
         <div class="input-row-wrapper">
             <div class="col-label">Rent:</div>
             <div class="col-result">$<input type="number" id="rent" min="0" step="0.01" value="250"></div>
@@ -250,14 +284,14 @@
             var band5 = getVal('band5');
             var bonusActual = getVal('bonusActual');
 
-            // Artist totals (contract + bonus, but 0 if contract is 0)
-            document.getElementById('callerTotal').textContent = formatMoney(caller > 0 ? caller + bonusActual : 0);
-            document.getElementById('soundTotal').textContent = formatMoney(sound > 0 ? sound + bonusActual : 0);
-            document.getElementById('band1Total').textContent = formatMoney(band1 > 0 ? band1 + bonusActual : 0);
-            document.getElementById('band2Total').textContent = formatMoney(band2 > 0 ? band2 + bonusActual : 0);
-            document.getElementById('band3Total').textContent = formatMoney(band3 > 0 ? band3 + bonusActual : 0);
-            document.getElementById('band4Total').textContent = formatMoney(band4 > 0 ? band4 + bonusActual : 0);
-            document.getElementById('band5Total').textContent = formatMoney(band5 > 0 ? band5 + bonusActual : 0);
+            // Artist bonus column (shows bonusActual if contract > 0, else 0)
+            var artists = ['caller', 'sound', 'band1', 'band2', 'band3', 'band4', 'band5'];
+            var artistVals = [caller, sound, band1, band2, band3, band4, band5];
+            for (var a = 0; a < artists.length; a++) {
+                var bonus_for_artist = artistVals[a] > 0 ? bonusActual : 0;
+                document.getElementById(artists[a] + 'Bonus').textContent = formatMoney(bonus_for_artist);
+                document.getElementById(artists[a] + 'Total').textContent = formatMoney(artistVals[a] > 0 ? artistVals[a] + bonusActual : 0);
+            }
 
             var totalArtists = caller + sound + band1 + band2 + band3 + band4 + band5;
             document.getElementById('totalArtists').textContent = formatMoney(totalArtists);
