@@ -174,7 +174,7 @@
     </div>
 
     <div class="artist-grid">
-        <h2>Artist Rates</h2>
+        <h2>Expenses (Artists + Rent)</h2>
 
         <div></div>
         <div class="col-header">Contract</div>
@@ -216,31 +216,29 @@
         <div class="col-bonus">+ $<span id="band5Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band5Total">0.00</span></div>
 
-        <div class="total-row-wrapper">
-            <div class="col-label">Artist Totals:</div>
-            <div class="col-result">$<span id="totalArtists">0.00</span></div>
-            <div></div>
-            <div></div>
-        </div>
-
         <div class="input-row-wrapper">
             <div class="col-label">Rent:</div>
             <div class="col-input">$<input type="number" id="rent" min="0" step="0.01" value="250"></div>
             <div></div>
             <div></div>
         </div>
+
+        <div class="total-row-wrapper">
+            <div class="col-label">Expenses:</div>
+            <div class="col-result">$<span id="expenses">250.00</span></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <div class="total-row-wrapper">
+            <div class="col-label">Net Income:</div>
+            <div class="col-result">$<span id="netIncome">-250.00</span></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
 
     <div class="grid">
-        <div class="total-row-wrapper">
-            <div class="col-label">Pre-bonus Expenses (Artists + Rent):</div>
-            <div class="col-result">$<span id="expenses">250.00</span></div>
-        </div>
-
-        <div class="total-row-wrapper">
-            <div class="col-label">Pre-bonus Net Income (Income - Expenses):</div>
-            <div class="col-result">$<span id="netIncome">-250.00</span></div>
-        </div>
 
         <div class="total-row-wrapper">
             <div class="col-label">Bonus - Calculated:</div>
@@ -306,7 +304,6 @@
             }
 
             var totalArtists = caller + sound + band1 + band2 + band3 + band4 + band5;
-            document.getElementById('totalArtists').textContent = formatMoney(totalArtists);
 
             // Total expenses
             var rent = getVal('rent');
