@@ -82,6 +82,13 @@
             text-align: right;
             font-weight: bold;
         }
+        .col-bonus {
+            text-align: right;
+            padding-left: 8px;
+        }
+        .artist-grid + .grid {
+            margin-top: 15px;
+        }
         .artist-grid .total-row-wrapper {
             grid-template-columns: 1fr auto auto auto;
         }
@@ -118,7 +125,7 @@
     </style>
 </head>
 <body>
-    <h1>Closing Worksheet v0.1</h1>
+    <h1>Closing Worksheet v0.2</h1>
 
     <div class="grid">
         <h2>Cash Count</h2>
@@ -173,37 +180,37 @@
 
         <div class="col-label">Caller:</div>
         <div class="col-input">$<input type="number" id="caller" min="0" step="0.01" value="75"></div>
-        <div class="col-result">$<span id="callerBonus">0.00</span></div>
+        <div class="col-bonus">+ $<span id="callerBonus">0.00</span></div>
         <div class="col-result">= $<span id="callerTotal">75.00</span></div>
 
         <div class="col-label">Sound:</div>
         <div class="col-input">$<input type="number" id="sound" min="0" step="0.01" value="75"></div>
-        <div class="col-result">$<span id="soundBonus">0.00</span></div>
+        <div class="col-bonus">+ $<span id="soundBonus">0.00</span></div>
         <div class="col-result">= $<span id="soundTotal">75.00</span></div>
 
         <div class="col-label">Band 1:</div>
         <div class="col-input">$<input type="number" id="band1" min="0" step="0.01" value="75"></div>
-        <div class="col-result">$<span id="band1Bonus">0.00</span></div>
+        <div class="col-bonus">+ $<span id="band1Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band1Total">75.00</span></div>
 
         <div class="col-label">Band 2:</div>
         <div class="col-input">$<input type="number" id="band2" min="0" step="0.01" value="75"></div>
-        <div class="col-result">$<span id="band2Bonus">0.00</span></div>
+        <div class="col-bonus">+ $<span id="band2Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band2Total">75.00</span></div>
 
         <div class="col-label">Band 3:</div>
         <div class="col-input">$<input type="number" id="band3" min="0" step="0.01" value="0"></div>
-        <div class="col-result">$<span id="band3Bonus">0.00</span></div>
+        <div class="col-bonus">+ $<span id="band3Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band3Total">0.00</span></div>
 
         <div class="col-label">Band 4:</div>
         <div class="col-input">$<input type="number" id="band4" min="0" step="0.01" value="0"></div>
-        <div class="col-result">$<span id="band4Bonus">0.00</span></div>
+        <div class="col-bonus">+ $<span id="band4Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band4Total">0.00</span></div>
 
         <div class="col-label">Band 5:</div>
         <div class="col-input">$<input type="number" id="band5" min="0" step="0.01" value="0"></div>
-        <div class="col-result">$<span id="band5Bonus">0.00</span></div>
+        <div class="col-bonus">+ $<span id="band5Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band5Total">0.00</span></div>
 
         <div class="total-row-wrapper">
