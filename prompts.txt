@@ -75,3 +75,6 @@ Change the page header to say "v0.2" instead of "v0.1".
 
 Prompt 16:
 The "Total Artists" and "Rent" rows should have 4 columns that line up with the artist columns above them. The result value for "Total Artists" should be in the second column instead of the last column. The input for Rent should also be in the second column instead of the last column. The label "Expenses (Artists + Rent)" should be changed to "Pre-bonus Expenses (Artists + Rent)". Change the label "Net Income (Income - Expenses)" to "Pre-bonus Net Income (Income - Expenses)". Change "Total Artists" to "Artist Totals".
+
+Prompt 17:
+Change "Artist Rates" to "Expenses (Artists + Rent)". Remove the "Artist Totals" row. The Rent row should become part of the artist grid right under the "Band 5" row with rent label in column 1, rent input in column 2, and columns 3-4 empty. The "Pre-bonus Expenses" row should become part of the artist grid with "Expenses:" in column 1, the expenses span in column 2, and columns 3-4 blank. The "Pre-bonus Net Income" row should become part of the artist grid with "Net Income:" in column 1, the net income span in column 2, and columns 3-4 blank.
