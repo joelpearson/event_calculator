@@ -67,3 +67,8 @@ Change the labels to replace "Band member" with just "Band", keeping the existin
 For the 7 artist rows, add a new column between columns 2 and 3. It should be another result column with a default of $0.00 . Whenever the bonusActual value is changed, that value should be copied to this new column in all 7 artist rows.
 Change "Artist Contract Rates" to "Artist Rates".
 Add a new row before the "Caller" row. The first column should be blank. The next 3 columns should contain the words "Contract", "Bonus" and "Total", respectively.
+
+Prompt 15:
+For the bonus column in the artist rows, add " + " before the number and add a little horizontal space at the left edge of that column.
+Add a little vertical space between the "Total Artists" row and the one that follows it because they're almost overlapping right now.
+Change the page header to say "v0.2" instead of "v0.1".
