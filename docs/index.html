@@ -92,9 +92,6 @@
         .artist-grid .total-row-wrapper {
             grid-template-columns: 1fr auto auto auto;
         }
-        .artist-grid .input-row-wrapper {
-            grid-template-columns: 1fr auto auto auto;
-        }
         @media (max-width: 480px) {
             body {
                 padding: 10px;
@@ -216,26 +213,20 @@
         <div class="col-bonus">+ $<span id="band5Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band5Total">0.00</span></div>
 
-        <div class="input-row-wrapper">
-            <div class="col-label">Rent:</div>
-            <div class="col-input">$<input type="number" id="rent" min="0" step="0.01" value="250"></div>
-            <div></div>
-            <div></div>
-        </div>
+        <div class="col-label">Rent:</div>
+        <div class="col-input">$<input type="number" id="rent" min="0" step="0.01" value="250"></div>
+        <div></div>
+        <div></div>
 
-        <div class="total-row-wrapper">
-            <div class="col-label">Expenses:</div>
-            <div class="col-result">$<span id="expenses">250.00</span></div>
-            <div></div>
-            <div></div>
-        </div>
+        <div class="col-label" style="font-weight: bold;">Expenses:</div>
+        <div class="col-input" style="font-weight: bold;">$<span id="expenses">250.00</span></div>
+        <div></div>
+        <div></div>
 
-        <div class="total-row-wrapper">
-            <div class="col-label">Net Income:</div>
-            <div class="col-result">$<span id="netIncome">-250.00</span></div>
-            <div></div>
-            <div></div>
-        </div>
+        <div class="col-label" style="font-weight: bold;">Net Income:</div>
+        <div class="col-input" style="font-weight: bold;">$<span id="netIncome">-250.00</span></div>
+        <div></div>
+        <div></div>
     </div>
 
     <div class="grid">
