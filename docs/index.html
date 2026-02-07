@@ -10,7 +10,7 @@
         }
         body {
             font-family: monospace;
-            max-width: 400px;
+            max-width: 440px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
@@ -127,6 +127,8 @@
     <div class="grid">
         <h2>Cash Count</h2>
 
+        <p style="grid-column: 1 / -1; text-align: left; margin: 0;">Put $40 in $5 bills and $10 in singles in metal box; do not count as Cash. Then count remaining Cash:</p>
+
         <div class="col-label">$100 x</div>
         <div class="col-input"><input type="number" id="bills100" min="0" step="1" value="0"></div>
         <div class="col-result">= $<span id="total100">0.00</span></div>
@@ -147,6 +149,8 @@
         <div class="col-input"><input type="number" id="bills5" min="0" step="1" value="0"></div>
         <div class="col-result">= $<span id="total5">0.00</span></div>
 
+        <div style="grid-column: 1 / -1; text-align: left; font-style: italic;">(or enter entire amount here)</div>
+
         <div class="col-label">$1 x</div>
         <div class="col-input"><input type="number" id="bills1" min="0" step="1" value="0"></div>
         <div class="col-result">= $<span id="total1">0.00</span></div>
@@ -164,6 +168,11 @@
         <div class="total-row-wrapper">
             <div class="col-label">Income (Cash + Electronic):</div>
             <div class="col-result">$<span id="income">0.00</span></div>
+        </div>
+
+        <div class="total-row-wrapper">
+            <div class="col-label">Deposit (Cash - Rent - Artist Total):</div>
+            <div class="col-result">$<span id="deposit">0.00</span></div>
         </div>
     </div>
 
@@ -215,12 +224,12 @@
         <div></div>
         <div></div>
 
-        <div class="col-label" style="font-weight: bold;">pre-bonus Expenses:</div>
+        <div class="col-label" style="font-weight: bold;">Pre-bonus Expense:</div>
         <div class="col-input" style="font-weight: bold;">$<span id="expenses">250.00</span></div>
         <div></div>
         <div></div>
 
-        <div class="col-label" style="font-weight: bold;">pre-b. Net Income:</div>
+        <div class="col-label" style="font-weight: bold;">Pre-bonus Net Inc:</div>
         <div class="col-input" style="font-weight: bold;">$<span id="netIncome">-250.00</span></div>
         <div></div>
         <div></div>
@@ -305,6 +314,18 @@
             // Bonus (10% rounded up to nearest $1)
             var bonus = netIncome > 0 ? Math.ceil(netIncome * 0.10) : 0;
             document.getElementById('bonus').textContent = formatMoney(bonus);
+
+            // Deposit calculation (Cash - Rent - Artist Totals with bonus)
+            var callerTotal = caller > 0 ? caller + bonusActual : 0;
+            var soundTotal = sound > 0 ? sound + bonusActual : 0;
+            var band1Total = band1 > 0 ? band1 + bonusActual : 0;
+            var band2Total = band2 > 0 ? band2 + bonusActual : 0;
+            var band3Total = band3 > 0 ? band3 + bonusActual : 0;
+            var band4Total = band4 > 0 ? band4 + bonusActual : 0;
+            var band5Total = band5 > 0 ? band5 + bonusActual : 0;
+            var artistTotalWithBonus = callerTotal + soundTotal + band1Total + band2Total + band3Total + band4Total + band5Total;
+            var deposit = totalCash - rent - artistTotalWithBonus;
+            document.getElementById('deposit').textContent = formatMoney(deposit);
         }
 
         // Add event listeners to all inputs
