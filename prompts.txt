@@ -100,3 +100,6 @@ Change version to "v0.3".
 Make "Electronic Payments:" left-justified. Try to re-use existing classes, if possible.
 
 Change both the label and the formula for the Deposit to be Income - Rent - Artist Total.
+
+After the page has loaded, check the query string to see of there are any keys that match the names of input fields in this page. If such values are found and they are numeric and >= 0 and <= 2000, use the value of each key to populate the value of the corresponding input, overwriting any default value. Ignore any keys that don't match the name of any input field.
+Any time an input value is changed, create or update the query string to include that input's name and value.

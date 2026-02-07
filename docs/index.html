@@ -329,10 +329,27 @@
             document.getElementById('deposit').textContent = formatMoney(deposit);
         }
 
+        // Update query string with current input values
+        function updateQueryString() {
+            var params = new URLSearchParams();
+            var inputs = document.querySelectorAll('input');
+            for (var i = 0; i < inputs.length; i++) {
+                var input = inputs[i];
+                if (input.id) {
+                    params.set(input.id, input.value);
+                }
+            }
+            var newUrl = window.location.pathname + '?' + params.toString();
+            window.history.replaceState({}, '', newUrl);
+        }
+
         // Add event listeners to all inputs
         var inputs = document.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++) {
-            inputs[i].addEventListener('input', calculate);
+            inputs[i].addEventListener('input', function() {
+                calculate();
+                updateQueryString();
+            });
             inputs[i].addEventListener('focus', function() {
                 this.select();
             });
@@ -343,10 +360,27 @@
             var bonusValue = document.getElementById('bonus').textContent;
             document.getElementById('bonusActual').value = bonusValue;
             calculate();
+            updateQueryString();
         });
 
-        // Initial calculation
+        // Load values from query string on page load
+        function loadFromQueryString() {
+            var params = new URLSearchParams(window.location.search);
+            params.forEach(function(value, key) {
+                var input = document.getElementById(key);
+                if (input && input.tagName === 'INPUT') {
+                    var numValue = parseFloat(value);
+                    if (!isNaN(numValue) && numValue >= 0 && numValue <= 2000) {
+                        input.value = numValue;
+                    }
+                }
+            });
+        }
+
+        // Initialize: load from query string, then calculate
+        loadFromQueryString();
         calculate();
+        updateQueryString();
     </script>
 </body>
 </html>
