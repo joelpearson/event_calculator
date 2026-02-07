@@ -89,9 +89,6 @@
         .artist-grid + .grid {
             margin-top: 15px;
         }
-        .artist-grid .total-row-wrapper {
-            grid-template-columns: 1fr auto auto auto;
-        }
         @media (max-width: 480px) {
             body {
                 padding: 10px;
@@ -131,27 +128,27 @@
         <h2>Cash Count</h2>
 
         <div class="col-label">$100 x</div>
-        <div class="col-input"><input type="number" id="bills100" min="0" value="0"></div>
+        <div class="col-input"><input type="number" id="bills100" min="0" step="1" value="0"></div>
         <div class="col-result">= $<span id="total100">0.00</span></div>
 
         <div class="col-label">$50 x</div>
-        <div class="col-input"><input type="number" id="bills50" min="0" value="0"></div>
+        <div class="col-input"><input type="number" id="bills50" min="0" step="1" value="0"></div>
         <div class="col-result">= $<span id="total50">0.00</span></div>
 
         <div class="col-label">$20 x</div>
-        <div class="col-input"><input type="number" id="bills20" min="0" value="0"></div>
+        <div class="col-input"><input type="number" id="bills20" min="0" step="1" value="0"></div>
         <div class="col-result">= $<span id="total20">0.00</span></div>
 
         <div class="col-label">$10 x</div>
-        <div class="col-input"><input type="number" id="bills10" min="0" value="0"></div>
+        <div class="col-input"><input type="number" id="bills10" min="0" step="1" value="0"></div>
         <div class="col-result">= $<span id="total10">0.00</span></div>
 
         <div class="col-label">$5 x</div>
-        <div class="col-input"><input type="number" id="bills5" min="0" value="0"></div>
+        <div class="col-input"><input type="number" id="bills5" min="0" step="1" value="0"></div>
         <div class="col-result">= $<span id="total5">0.00</span></div>
 
         <div class="col-label">$1 x</div>
-        <div class="col-input"><input type="number" id="bills1" min="0" value="0"></div>
+        <div class="col-input"><input type="number" id="bills1" min="0" step="1" value="0"></div>
         <div class="col-result">= $<span id="total1">0.00</span></div>
 
         <div class="total-row-wrapper">
@@ -218,12 +215,12 @@
         <div></div>
         <div></div>
 
-        <div class="col-label" style="font-weight: bold;">Expenses:</div>
+        <div class="col-label" style="font-weight: bold;">pre-bonus Expenses:</div>
         <div class="col-input" style="font-weight: bold;">$<span id="expenses">250.00</span></div>
         <div></div>
         <div></div>
 
-        <div class="col-label" style="font-weight: bold;">Net Income:</div>
+        <div class="col-label" style="font-weight: bold;">pre-b. Net Income:</div>
         <div class="col-input" style="font-weight: bold;">$<span id="netIncome">-250.00</span></div>
         <div></div>
         <div></div>
