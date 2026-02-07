@@ -79,5 +79,27 @@ The "Total Artists" and "Rent" rows should have 4 columns that line up with the 
 Prompt 17:
 Change "Artist Rates" to "Expenses (Artists + Rent)". Remove the "Artist Totals" row. The Rent row should become part of the artist grid right under the "Band 5" row with rent label in column 1, rent input in column 2, and columns 3-4 empty. The "Pre-bonus Expenses" row should become part of the artist grid with "Expenses:" in column 1, the expenses span in column 2, and columns 3-4 blank. The "Pre-bonus Net Income" row should become part of the artist grid with "Net Income:" in column 1, the net income span in column 2, and columns 3-4 blank.
 
+Additional prompts (with a blank line between each):
+The rows for Rent, Expenses, Net Income, should use the exact same classes for each of the columns as the rows in the artist grid. Right now the columns for these rows are not lining up with the rows in the artist grid.
+
+Change the label from "Expenses" to "pre-bonus Expenses" and "Net Income" to "pre-b. Net Income".
+
+Add a text paragraph before "Cash Count" that says "Put $40 in $5 bills and $10 in singles in metal box; do not count as Cash. Then count remaining Cash:".
+Under Count Cash, before the "$1" label add the text "(or enter entire amount here)".
+Increase body width to 440px.
+Change the label "pre-b. Net Income" to "Pre-bonus Net Inc".
+Change the label "pre-bonus Expenses" to "Pre-bonus Expense".
+Add a new column at the end similar to the "Income" line, but with the label "Deposit (Cash - Rent - Artist Total)". The result column should always equal totalCash - rent - callerTotal - soundTotal - band1Total - band2Total - band3Total - band4Total - band5Total.
+
+Remove the div containing "(or enter entire amount here)".
+Change the label "$1 x" to "(or enter amount here) $1 x".
+Make the Deposit row the last row on the page.
+Add a line break before "Then count remaining Cash:".
+Change version to "v0.3".
+
+Make "Electronic Payments:" left-justified. Try to re-use existing classes, if possible.
+
+Change both the label and the formula for the Deposit to be Income - Rent - Artist Total.
+
 After the page has loaded, check the query string to see of there are any keys that match the names of input fields in this page. If such values are found and they are numeric and >= 0 and <= 2000, use the value of each key to populate the value of the corresponding input, overwriting any default value. Ignore any keys that don't match the name of any input field.
 Any time an input value is changed, create or update the query string to include that input's name and value.
