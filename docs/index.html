@@ -243,7 +243,7 @@
         <div class="col-result">$<input type="number" id="bonusActual" min="0" step="0.01" value="0"></div>
 
         <div class="total-row-wrapper">
-            <div class="col-label">Deposit (Income - Rent - Artist Total):</div>
+            <div class="col-label">Deposit (Total Cash - Artist Total):</div>
             <div class="col-result">$<span id="deposit">0.00</span></div>
         </div>
     </div>
@@ -325,7 +325,7 @@
             var band4Total = band4 > 0 ? band4 + bonusActual : 0;
             var band5Total = band5 > 0 ? band5 + bonusActual : 0;
             var artistTotalWithBonus = callerTotal + soundTotal + band1Total + band2Total + band3Total + band4Total + band5Total;
-            var deposit = income - rent - artistTotalWithBonus;
+            var deposit = totalCash - artistTotalWithBonus;
             document.getElementById('deposit').textContent = formatMoney(deposit);
         }
 
