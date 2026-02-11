@@ -109,3 +109,5 @@ Change both the label and the formula for the Deposit to be Total Cash - Artist 
 Change the label for "Electronic Payments" to be "Electronic Payments (Zeffy)".
 
 Change the label for "Electronic Payments (Zeffy)" to "Zeffy/Electronic Payments".
+
+Change the label for "Income (Cash + Electronic)" to "Total (Cash + Zeffy/Electronic)".
