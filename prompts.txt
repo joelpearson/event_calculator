@@ -107,3 +107,5 @@ Any time an input value is changed, create or update the query string to include
 Change both the label and the formula for the Deposit to be Total Cash - Artist Total.
 
 Change the label for "Electronic Payments" to be "Electronic Payments (Zeffy)".
+
+Change the label for "Electronic Payments (Zeffy)" to "Zeffy/Electronic Payments".
