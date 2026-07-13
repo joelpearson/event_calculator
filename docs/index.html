@@ -122,6 +122,12 @@
                 border-top-color: #444;
             }
         }
+        @media print {
+            /* Hide the action buttons so they don't appear in the saved PDF */
+            button {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -248,6 +254,12 @@
         </div>
     </div>
 
+    <div style="margin-top: 20px; text-align: center;">
+        <button id="savePdf">Save as PDF</button>
+        <button id="copyWorksheet">Copy to clipboard</button>
+        <button id="sendEmail">Send as email</button>
+    </div>
+
     <script>
         function getVal(id) {
             var val = parseFloat(document.getElementById(id).value);
@@ -354,6 +366,124 @@
                 this.select();
             });
         }
+
+        // Save as PDF button: opens the browser's print dialog, which has a
+        // "Save as PDF" destination. Buttons are hidden when printing (see @media print).
+        document.getElementById('savePdf').addEventListener('click', function() {
+            window.print();
+        });
+
+        // Build a plaintext summary of the worksheet for emailing.
+        // Reads the values already rendered on the page (kept current by the
+        // input listeners) so the summary matches exactly what the user sees.
+        function buildEmailBody() {
+            function span(id) {
+                return document.getElementById(id).textContent;
+            }
+            function inputMoney(id) {
+                return getVal(id).toFixed(2);
+            }
+
+            var lines = [];
+
+            // window.location.href carries the live query string (see updateQueryString),
+            // so this link reopens the filled-in worksheet -- but only when the page is
+            // served over http(s) (the GitHub Pages URL), not when opened as a local file://.
+            lines.push('Open worksheet: ' + window.location.href);
+            lines.push('');
+
+            lines.push('CLOSING WORKSHEET');
+            lines.push('=================');
+            lines.push('');
+            lines.push('Cash Count:');
+            var denoms = [
+                { label: '$100', bills: 'bills100', total: 'total100' },
+                { label: '$50', bills: 'bills50', total: 'total50' },
+                { label: '$20', bills: 'bills20', total: 'total20' },
+                { label: '$10', bills: 'bills10', total: 'total10' },
+                { label: '$5', bills: 'bills5', total: 'total5' },
+                { label: '$1', bills: 'bills1', total: 'total1' }
+            ];
+            for (var d = 0; d < denoms.length; d++) {
+                lines.push('  ' + denoms[d].label + ' x ' + getVal(denoms[d].bills) +
+                    ' = $' + span(denoms[d].total));
+            }
+            lines.push('Total Cash: $' + span('totalCash'));
+            lines.push('Zeffy/Electronic Payments: $' + inputMoney('electronic'));
+            lines.push('Total (Cash + Zeffy/Electronic): $' + span('income'));
+            lines.push('');
+            lines.push('Expenses (Artists + Rent):');
+
+            // Only list artists whose contract is > 0 (mirrors the on-page display).
+            var artists = [
+                { id: 'caller', label: 'Caller' },
+                { id: 'sound', label: 'Sound' },
+                { id: 'band1', label: 'Band 1' },
+                { id: 'band2', label: 'Band 2' },
+                { id: 'band3', label: 'Band 3' },
+                { id: 'band4', label: 'Band 4' },
+                { id: 'band5', label: 'Band 5' }
+            ];
+            for (var i = 0; i < artists.length; i++) {
+                if (getVal(artists[i].id) > 0) {
+                    // Mirror the on-page columns: Contract + Bonus = Total
+                    lines.push('  ' + artists[i].label + ': $' + inputMoney(artists[i].id) +
+                        ' + $' + span(artists[i].id + 'Bonus') +
+                        ' = $' + span(artists[i].id + 'Total'));
+                }
+            }
+            lines.push('  Rent: $' + inputMoney('rent'));
+            lines.push('Pre-bonus Expense: $' + span('expenses'));
+            lines.push('Pre-bonus Net Inc: $' + span('netIncome'));
+            lines.push('');
+            lines.push('Bonus - Calculated: $' + span('bonus'));
+            lines.push('Bonus - Actual: $' + inputMoney('bonusActual'));
+            lines.push('');
+            lines.push('Deposit (Total Cash - Artist Total): $' + span('deposit'));
+
+            return lines.join('\n');
+        }
+
+        // Send as email button: opens the default mail client pre-filled with the
+        // summary. mailto: cannot carry attachments, so the worksheet data and a
+        // restore link go in the body instead.
+        document.getElementById('sendEmail').addEventListener('click', function() {
+            var subject = 'Closing Worksheet - ' + new Date().toLocaleDateString();
+            var body = buildEmailBody();
+            window.location.href = 'mailto:?subject=' + encodeURIComponent(subject) +
+                '&body=' + encodeURIComponent(body);
+        });
+
+        // Copy worksheet button: copies the same summary used for the email to the
+        // clipboard, with brief "Copied!" feedback on the button.
+        var copyWorksheetBtn = document.getElementById('copyWorksheet');
+        var copyWorksheetLabel = copyWorksheetBtn.textContent;
+        copyWorksheetBtn.addEventListener('click', function() {
+            var text = buildEmailBody();
+            function feedback(msg) {
+                copyWorksheetBtn.textContent = msg;
+                setTimeout(function() { copyWorksheetBtn.textContent = copyWorksheetLabel; }, 1500);
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(
+                    function() { feedback('Copied!'); },
+                    function() { feedback('Copy failed'); }
+                );
+            } else {
+                // Fallback for old browsers without the Clipboard API.
+                // Uses <textarea>, not <input>: an <input> strips newlines.
+                // Off-screen positioning stops .select() from scrolling the page.
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); feedback('Copied!'); }
+                catch (e) { feedback('Copy failed'); }
+                document.body.removeChild(ta);
+            }
+        });
 
         // Copy bonus button
         document.getElementById('copyBonus').addEventListener('click', function() {
