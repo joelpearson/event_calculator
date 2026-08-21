@@ -31,3 +31,6 @@ Open `docs/index.html` in any web browser. No server or installation required.
 - **Expenses** = Total Artists + Rent
 - **Net Income** = Income - Expenses
 - **Bonus** = 10% of Net Income (if positive), rounded up to nearest $1
+- **Artist Total** = Sum of all artist contract rates plus their bonuses
+- **Deposit** = Total Cash - Artist Total
+- **"Profit"** = Deposit + Zeffy/Electronic - Rent
