@@ -334,8 +334,8 @@
             var netIncome = income - expenses;
             document.getElementById('netIncome').textContent = formatMoney(netIncome);
 
-            // Bonus (10% rounded up to nearest $1)
-            var bonus = netIncome > 0 ? Math.ceil(netIncome * 0.10) : 0;
+            // Bonus (10%, rounded to the nearest number ending in 0 or 5)
+            var bonus = netIncome > 0 ? Math.round(netIncome * 0.10 / 5) * 5 : 0;
             document.getElementById('bonus').textContent = formatMoney(bonus);
 
             // Deposit calculation (Cash - Rent - Artist Totals with bonus)

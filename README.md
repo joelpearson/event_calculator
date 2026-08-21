@@ -9,7 +9,7 @@ A simple web-based calculator for tracking income and expenses at dance events.
 - **Artist Payments**: Record contract rates for caller, sound engineer, and up to 5 band members
 - **Venue Rent**: Configurable rent expense
 - **Automatic Calculations**: All totals update instantly as you type
-- **Bonus Calculator**: Computes 10% bonus on positive net income, rounded up to nearest dollar
+- **Bonus Calculator**: Computes 10% bonus on positive net income, rounded to the nearest number ending in 0 or 5
 - **Mobile Friendly**: Responsive layout works on phones and tablets
 - **Dark Mode**: Automatically adapts to system light/dark mode preference
 - **Easy Input**: Clicking/tapping an input field selects its contents for quick editing
@@ -30,7 +30,7 @@ Open `docs/index.html` in any web browser. No server or installation required.
 - **Total Artists** = Sum of all artist contract rates
 - **Expenses** = Total Artists + Rent
 - **Net Income** = Income - Expenses
-- **Bonus** = 10% of Net Income (if positive), rounded up to nearest $1
+- **Bonus** = 10% of Net Income (if positive), rounded to the nearest $5
 - **Artist Total** = Sum of all artist contract rates plus their bonuses
 - **Deposit** = Total Cash - Artist Total
 - **"Profit"** = Deposit + Zeffy/Electronic - Rent
