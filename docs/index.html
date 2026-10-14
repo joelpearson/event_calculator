@@ -221,6 +221,11 @@
         <div class="col-bonus">+ $<span id="band5Bonus">0.00</span></div>
         <div class="col-result">= $<span id="band5Total">0.00</span></div>
 
+        <div class="col-label" style="font-weight: bold;">Artist Total:</div>
+        <div class="col-input" style="font-weight: bold;">$<span id="artistContract">300.00</span></div>
+        <div class="col-bonus" style="font-weight: bold;">+ $<span id="artistBonus">0.00</span></div>
+        <div class="col-result" style="font-weight: bold;">= $<span id="artistTotal">300.00</span></div>
+
         <div class="col-label">Rent:</div>
         <div class="col-input">$<input type="number" id="rent" min="0" step="0.01" value="250"></div>
         <div></div>
@@ -251,6 +256,11 @@
         <div class="total-row-wrapper">
             <div class="col-label">Deposit (Total Cash - Artist Total):</div>
             <div class="col-result">$<span id="deposit">0.00</span></div>
+        </div>
+
+        <div class="total-row-wrapper">
+            <div class="col-label">"Profit" (Deposit + Zeffy - Rent):</div>
+            <div class="col-result">$<span id="profit">0.00</span></div>
         </div>
     </div>
 
@@ -324,8 +334,8 @@
             var netIncome = income - expenses;
             document.getElementById('netIncome').textContent = formatMoney(netIncome);
 
-            // Bonus (10% rounded up to nearest $1)
-            var bonus = netIncome > 0 ? Math.ceil(netIncome * 0.10) : 0;
+            // Bonus (10%, rounded to the nearest number ending in 0 or 5)
+            var bonus = netIncome > 0 ? Math.round(netIncome * 0.10 / 5) * 5 : 0;
             document.getElementById('bonus').textContent = formatMoney(bonus);
 
             // Deposit calculation (Cash - Rent - Artist Totals with bonus)
@@ -339,6 +349,15 @@
             var artistTotalWithBonus = callerTotal + soundTotal + band1Total + band2Total + band3Total + band4Total + band5Total;
             var deposit = totalCash - artistTotalWithBonus;
             document.getElementById('deposit').textContent = formatMoney(deposit);
+
+            // Artist Total row: mirrors the artist columns (Contract + Bonus = Total)
+            document.getElementById('artistContract').textContent = formatMoney(totalArtists);
+            document.getElementById('artistBonus').textContent = formatMoney(artistTotalWithBonus - totalArtists);
+            document.getElementById('artistTotal').textContent = formatMoney(artistTotalWithBonus);
+
+            // "Profit" (Deposit + Zeffy - Rent)
+            var profit = deposit + electronic - rent;
+            document.getElementById('profit').textContent = formatMoney(profit);
         }
 
         // Update query string with current input values
@@ -432,6 +451,9 @@
                         ' = $' + span(artists[i].id + 'Total'));
                 }
             }
+            lines.push('  Artist Total: $' + span('artistContract') +
+                ' + $' + span('artistBonus') +
+                ' = $' + span('artistTotal'));
             lines.push('  Rent: $' + inputMoney('rent'));
             lines.push('Pre-bonus Expense: $' + span('expenses'));
             lines.push('Pre-bonus Net Inc: $' + span('netIncome'));
@@ -440,6 +462,7 @@
             lines.push('Bonus - Actual: $' + inputMoney('bonusActual'));
             lines.push('');
             lines.push('Deposit (Total Cash - Artist Total): $' + span('deposit'));
+            lines.push('"Profit" (Deposit + Zeffy - Rent): $' + span('profit'));
 
             return lines.join('\n');
         }

@@ -111,3 +111,9 @@ Change the label for "Electronic Payments" to be "Electronic Payments (Zeffy)".
 Change the label for "Electronic Payments (Zeffy)" to "Zeffy/Electronic Payments".
 
 Change the label for "Income (Cash + Electronic)" to "Total (Cash + Zeffy/Electronic)".
+
+I'd like to add the following:
+1. "Artist Total" in the expenses section below "Band 5" and above "Rent"
+2. Bonus calculation should round to the nearest number ending in 0 or 5 (see image, pre-bonus net being $553 should round to $55 per person, ending in 5, not $56)
+3. ""Profit" (Deposit + Zeffy - Rent)" (literally put "Profit" in a single pair of double quotes) below "Deposit"
+Also, #1 and #3 should be added to the email.
